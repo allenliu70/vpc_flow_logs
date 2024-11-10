@@ -29,5 +29,5 @@ as well.
     - **protocol-numbers.csv** -- this csv was downloaded from IANA website providing the mappings between protocol numbers and protocol names.
     - **available_fields.py** -- this captures the available flow logs fiedls from AWS VPC documentation site. I initially included version 2 only. I can further expand it to include fields of higher versions.
 
-2. Initial testing was done with the sample flow logs provided in the technical assessment decription. I can search the internet to gather more flow logs samples to conduct more testing.
+2. Initial testing was done with the sample flow logs provided in the technical assessment decription. I can search the internet to gather more flow logs samples to conduct more testing. (I just come across this AWS site: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-records-examples.html, which seems to have many more log examples. I'll look into them tomorrow to see if I can leverage them for conducting further testing.)
 
