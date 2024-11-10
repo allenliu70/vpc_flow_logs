@@ -30,10 +30,43 @@ def get_iana_protocol_numbers() -> List:
     
     return protocol_numbers
 
+def get_pre_selected_ports() -> List:
+    # Initialize an empty dictionary to store the mapping
+    pre_select_ports = []
+
+    try:
+        print('Retrieving IANA protocol numbers.')
+        # Open the CSV file containing the protocol numbers and names
+        with open('lookup_table.csv', mode='r') as file:
+            csv_reader = csv.reader(file)
+            
+            # Skip the header row if there is one
+            next(csv_reader)
+            
+            # Iterate over each row in the CSV file, assuming the first column is the protocol number
+            pre_select_ports = [int(row[0]) for row in csv_reader if row[0].isdigit()]
+                
+    except FileNotFoundError:
+        print("The file was not found.")
+    except IOError as e:
+        print(f"An I/O error occurred: {e}")
+    else:
+        print('Sucessfully read IANA protocol numbers from the saved csv file.')
+    finally:
+        print("Finished file operation.")
+    
+    return pre_select_ports
+    pass
+
+# since the range (1, 65535) for ports results in mostly untagged entries, I made an assumption here
+# that we may be more interseted in small set of pre-selecte ports
+# pre_selected_ports = [25, 68, 23, 31, 443, 22, 3389, 0, 110, 993, 143] # taken from the sample tag mappings lookup table.
+pre_selected_ports = get_pre_selected_ports()
+
 # print(get_iana_protocol_numbers())
 iana_protocol_numbers = get_iana_protocol_numbers()
 
-pre_selected_ports = [25, 68, 23, 31, 443, 22, 3389, 0, 110, 993, 143]
+    
 
 def generate_flow_log_entry():
     version = 2
