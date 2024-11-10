@@ -3,7 +3,7 @@ import csv
 from pprint import pprint
 
 from available_fields import fields
-default_fields = [f[0] for f in fields if f[1] == 2]
+default_fields = [f[0] for f in fields]
 
 def get_iana_protocol_mapping() -> dict:
     # Initialize an empty dictionary to store the mapping
@@ -100,7 +100,7 @@ def get_counts(flow_log_filename: str) -> List[Dict]:
 
 def output_counts_to_file(tag_counts: Dict, port_prot_counts: Dict) -> None:
     try:
-        with open('output.txt', mode='w') as outfile:
+        with open('custom_format_output.txt', mode='w') as outfile:
             print('Writing Tag Counts to output.txt')
             outfile.write('Tag Counts:\n')
             outfile.write('Tag,Count\n')

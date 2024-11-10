@@ -1,18 +1,3 @@
-# Field	Description	Version
-fields = [  ('version', 2), # data type: INT_32
-            ('account-id', 2), # data type: STRING
-            ('interface-id', 2), # data type: STRING
-            ('srcaddr', 2), # data type: STRING
-            ('dstaddr', 2), # data type: STRING
-            ('srcport', 2), # data type: INT_32
-            ('dstport', 2), # data type: INT_32
-            ('protocol', 2), # data type: INT_32
-            ('packets', 2), # data type: INT_64
-            ('bytes', 2), # The number of bytes transferred during the flow. Parquet data type: INT_64
-            ('start', 2), # The time, in Unix seconds, when the first packet of the flow was received within the aggregation interval. data type: INT_64
-            ('end', 2), # The time, in Unix seconds, when the last packet of the flow was received within the aggregation interval. data type: INT_64
-            ('action', 2), # The action that is associated with the traffic: ACCEPT / REJECT. data type: STRING
-            ('log-status', 2), # OK / NODATA / SKIPDATA, data type: STRING
             ('vpc-id', 3), #The ID of the VPC that contains the network interface for which the traffic is recorded.Parquet data type: STRING
             ('subnet-id', 3), #The ID of the subnet that contains the network interface for which the traffic is recorded.Parquet data type: STRING
             ('instance-id', 3), #The ID of the instance that's associated with network interface for which the traffic is recorded, if the instance is owned by you. Returns a '-' symbol for a requester-managed network interface; for example, the network interface for a NAT gateway.Parquet data type: STRING
@@ -38,4 +23,3 @@ fields = [  ('version', 2), # data type: INT_32
             ('ecs-task-definition-arn', 7), #ARN of the ECS task definition if the traffic is from a running ECS task. To include this field in your subscription, you need permission to call ecs:ListClusters and ecs:ListTaskDefinitionsParquet data type: STRING
             ('ecs-task-arn', 7), #ARN of the ECS task if the traffic is from a running ECS task. To include this field in your subscription, you need permission to call ecs:ListClusters and ecs:ListTasks.Parquet data type: STRING
             ('ecs-task-id', 7), #ID of the ECS task if the traffic is from a running ECS task. To include this field in your subscription, you need permission to call ecs:ListClusters and ecs:ListTasks.Parquet data type: STRING
-]
