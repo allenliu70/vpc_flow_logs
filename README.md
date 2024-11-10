@@ -1,7 +1,7 @@
 # vpc_flow_logs
 This program will process VPC flow logs and output stats into a file.
 
-Release Notes:
+### Release Notes:
 1. Currently, it supports just version 2 (as I just got the technical assessment email today) but I can further extend it to support higher versions 
 as well. 
 
@@ -9,7 +9,7 @@ as well.
 
 3. No non-default lbraries or packages.
 
-How to run it:
+### How to run it:
 
 1. Clone my repo: https://github.com/allenliu70/vpc_flow_logs.git
 
@@ -22,7 +22,7 @@ How to run it:
 3. To process / analyze other flow logs, just replace the sample_flow_logs.log file. (Later, I can make this an argument to be passed in to the above pythn command).
 
 
-Addition Notes:
+### Addition Notes:
 1. In addition to the flow logs file, this program also reads from 2 additoinal files for purposes described as follows:
       
     - lookup_table.csv -- this csv file provides a lookup table to tag mappings from dstport-protocol combination.
