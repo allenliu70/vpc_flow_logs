@@ -76,9 +76,9 @@ def get_counts(flow_log_filename: str) -> List[Dict]:
                     dstport, protocol = None, None
                     for fname, fval in zip(default_fields, line.split()):
                         if fname == 'dstport':
-                            dstport = int(fval)
+                            dstport = int(fval) if fval.isdigit() else fval
                         elif fname == 'protocol':
-                            protocol = protocol_mapping[int(fval)].lower()
+                            protocol = protocol_mapping[int(fval)].lower() if fval.isdigit() else fval
 
                     pp_combo = (dstport, protocol)
                     tag = tag_mappings[pp_combo] if pp_combo in tag_mappings else 'Untagged'
@@ -133,6 +133,7 @@ def main():
 
     print('\nPort/Protocol Combination Counts:')
     pprint(port_prot_counts)
+    print()
 
     output_counts_to_file(tag_counts=tag_counts, port_prot_counts=port_prot_counts)
     print('Done. Please open output.txt to check the results.')
