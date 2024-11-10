@@ -20,7 +20,7 @@ def generate_flow_log_entry():
     return f"{version} {account_id} {eni_id} {srcaddr} {dstaddr} {srcport} {dstport} {protocol} {packets} {bytes} {start} {end} {action} {log_status}"
 
 # Generate a large number of flow log entries
-with open('synthetic_flow_logs.txt', 'w') as file:
+with open('synthetic_flow_logs.log', 'w') as file:
     for _ in range(10000):  # Adjust the number as needed
         file.write(generate_flow_log_entry() + "\n")
 
