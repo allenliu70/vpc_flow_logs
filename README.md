@@ -35,6 +35,10 @@ as well.
     **python generate_flow_logs.py**
 
    The generated synthetic flow logs are written into **'v2_synthetic_flow_logs.log'** in the local folder.
+   ps. A word on dstport randomization: 
+         - since the range (1, 65535) for ports results in mostly untagged entries, I made an assumption here that we may be more interseted in small set of pre-selecte ports.
+         - By defaul, I read pre_selected_ports from lookup_table.csv, which is the example tag mappings provide for this technical assessment. It currently contains these port numbers: [25, 68, 23, 31, 443, 22, 3389, 0, 110, 993, 143].
+         - To change the list of dstports you want in the generated synthetic flow logs, just replace/update/edit the lookup_tabe.csv file.
 
 
 ### Addition Notes:
