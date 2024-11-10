@@ -31,3 +31,5 @@ as well.
 
 2. Initial testing was done with the sample flow logs provided in the technical assessment decription. I can search the internet to gather more flow logs samples to conduct more testing. (I just come across this AWS site: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-records-examples.html, which seems to have many more log examples. I'll look into them tomorrow to see if I can leverage them for conducting further testing.)
 
+3. Once further testings are conducted and quality's confirmed, I can go ahead and enhance this to support higher version and custom formats.
+
