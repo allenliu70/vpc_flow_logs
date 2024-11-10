@@ -1,3 +1,4 @@
+import sys
 import csv
 from pprint import pprint
 
@@ -59,7 +60,7 @@ def get_tag_mappings() -> dict:
     return tag_mappings
 
 from typing import List, Dict
-def get_counts() -> List[Dict]:
+def get_counts(flow_log_filename: str) -> List[Dict]:
     tag_counts = {}
     port_prot_counts = {}
 
@@ -68,7 +69,7 @@ def get_counts() -> List[Dict]:
 
     try:
         print('Reading flow logs and compute tag counts and port/prot combo counts.')
-        with open('sample_flow_logs.log') as logfile:
+        with open(flow_log_filename) as logfile:
             for line in logfile:
                 line = line.strip(' \n')
                 if line:
@@ -121,9 +122,11 @@ def output_counts_to_file(tag_counts: Dict, port_prot_counts: Dict) -> None:
         print("Finished file operation.")
 
 
-if __name__ == "__main__":
+def main():
 
-    tag_counts, port_prot_counts = get_counts()
+    # Get the file name from the command-line arguments if provided
+    flow_log_filename = sys.argv[1] if len(sys.argv) > 1 else 'sample_flow_logs.log'
+    tag_counts, port_prot_counts = get_counts(flow_log_filename)
     
     print('\nTag Counts:')
     pprint(tag_counts)
@@ -133,3 +136,7 @@ if __name__ == "__main__":
 
     output_counts_to_file(tag_counts=tag_counts, port_prot_counts=port_prot_counts)
     print('Done. Please open output.txt to check the results.')
+
+
+if __name__ == "__main__":
+    main()

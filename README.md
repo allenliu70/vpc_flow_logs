@@ -17,9 +17,11 @@ as well.
 
     **python process_default_format.py**
 
-    which will read flow logs from the **sample_flow_logs.log** file in the same folder.
+    which will read flow logs from the **sample_flow_logs.log** file in the same folder by defaul.
 
-3. To process / analyze other flow logs, just replace the sample_flow_logs.log file. (Later, I can make this an argument to be passed in to the above pythn command).
+3. To process / analyze other flow logs, just provide the file name as an argument to the program.
+
+    **python process_default_format.py <my_flow_logs.log>**
 
 
 ### Addition Notes:
