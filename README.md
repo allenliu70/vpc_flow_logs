@@ -46,25 +46,25 @@ as well.
 
     4.1 Command:
 ```console
-        python process_custom_format.py <your_custom_format_filename> <your_flow_logs_filename> [--output_filename]
+    python process_custom_format.py <your_custom_format_filename> <your_flow_logs_filename> [--output_filename]
 ```
-        (e.g. python process_custom_format.py test/sample_custom_format.config test/tcp_flag_sequence.log)
+    (e.g. python process_custom_format.py test/sample_custom_format.config test/tcp_flag_sequence.log)
 
     4.2 Arguments:
-        -- The first 2 (positional) arguments are mandatory.
+    - The first 2 (positional) arguments are mandatory.
                 
-                <your_custom_format_filename>:
-                    - This file must contain 1 uncommented line to specify your custom format.
-                    - Commented and empty lines are ignore. The 1st uncommented and non-empty line will be treated as the specified custom format.
-                    - The fields specified in this line must be valid AWS flow log field which Amazon publshed on their website.
-                    - Otherwise, the program will print an error and exit.
+        <your_custom_format_filename>:
+            - This file must contain 1 uncommented line to specify your custom format.
+            - Commented and empty lines are ignore. The 1st uncommented and non-empty line will be treated as the specified custom format.
+            - The fields specified in this line must be valid AWS flow log field which Amazon publshed on their website.
+            - Otherwise, the program will print an error and exit.
 
-                <your_flow_logs_filename>:
-                    - This file should contain the flow logs you want to process and its contents should match the custom format you've provided.
-                    - By default, results are written to 'output_custom_format.txt' at program local folder. (Not the 'test' subfoler)
+        <your_flow_logs_filename>:
+            - This file should contain the flow logs you want to process and its contents should match the custom format you've provided.
+            - By default, results are written to 'output_custom_format.txt' at program local folder. (Not the 'test' subfoler)
 
-        -- The 3rd argument is optional, default: 'output_custom_fmt.txt'.
-                If you specify the output filename, the tag counts and port/portocol counts will be written there.
+    - The 3rd argument is optional, default: 'output_custom_fmt.txt'.
+        If you specify the output filename, the tag counts and port/portocol counts will be written there.
 
     4.3 Outputs:
         -- Tag counts and port/protocol combination counts are written to the same file.
