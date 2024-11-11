@@ -26,12 +26,13 @@ as well.
 3. Process **default format** flow logs:
 
     3.1 Command:
-```console
+    ```console
         python process_default_format.py
-```
-        which will read flow logs from the **test/sample_flow_logs.log** file in the same folder by defaul.
+    ```
+    which will read flow logs from the **test/sample_flow_logs.log** file in the same folder by default.
 
     3.2 To process / analyze other flow logs, just provide the file name as an argument to the program.
+
 ```console
         python process_default_format.py <my_flow_logs.log>
 
