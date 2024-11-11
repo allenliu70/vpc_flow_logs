@@ -45,31 +45,32 @@ as well.
 4. Process **custom format** flow logs:
 
     4.1 Command:
-```console
+    ```console
     python process_custom_format.py <your_custom_format_filename> <your_flow_logs_filename> [--output_filename]
-```
+    ```
     (e.g. python process_custom_format.py test/sample_custom_format.config test/tcp_flag_sequence.log)
 
     4.2 Arguments:
     - The first 2 (positional) arguments are mandatory.
                 
         <your_custom_format_filename>:
-            - This file must contain 1 uncommented line to specify your custom format.
-            - Commented and empty lines are ignore. The 1st uncommented and non-empty line will be treated as the specified custom format.
-            - The fields specified in this line must be valid AWS flow log field which Amazon publshed on their website.
-            - Otherwise, the program will print an error and exit.
+        - This file must contain 1 uncommented line to specify your custom format.
+        - Commented and empty lines are ignored. The 1st uncommented and non-empty line will be treated as the specified custom format.
+        - The fields specified in this line must be valid AWS flow log fields which Amazon published on their website.
+        - Otherwise, the program will print an error and exit.
 
         <your_flow_logs_filename>:
-            - This file should contain the flow logs you want to process and its contents should match the custom format you've provided.
-            - By default, results are written to 'output_custom_format.txt' at program local folder. (Not the 'test' subfoler)
+        - This file should contain the flow logs you want to process and its contents should match the custom format you've provided.
+        - By default, results are written to 'output_custom_format.txt' at the program local folder. (Not the 'test' subfolder)
 
     - The 3rd argument is optional, default: 'output_custom_fmt.txt'.
-        If you specify the output filename, the tag counts and port/portocol counts will be written there.
+        If you specify the output filename, the tag counts and port/protocol counts will be written there.
 
     4.3 Outputs:
-        -- Tag counts and port/protocol combination counts are written to the same file.
-        -- By default, **'output_custom_fmt.txt'** is the output file.
-        -- If user has provided an output filename to the program, the user-specified output file path will be created and updated with the results.
+    - Tag counts and port/protocol combination counts are written to the same file.
+    - By default, **'output_custom_fmt.txt'** is the output file.
+    - If the user has provided an output filename to the program, the user-specified output file path will be created and updated with the results.
+
 
 ### Testing Conducted:
 
