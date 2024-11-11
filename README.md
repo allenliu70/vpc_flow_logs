@@ -1,7 +1,12 @@
 # vpc_flow_logs
 This program will process VPC flow logs and output stats into a file.
 
-### Release Notes:
+### Updates (Nov. 10, 2024):
+1. Support for higher versions (>2) and custom format are now implemented.
+
+2. These addition capabilities are implemented as a separate python program, named **'process_custom_format.py'**. Details will be provided below in **How to run it*** section.
+
+### Initial Release Notes (Nov. 9, 2024):
 1. Currently, it supports just version 2 (as I just got the technical assessment email today) but I can further extend it to support higher versions 
 as well. 
 
@@ -13,15 +18,40 @@ as well.
 
 1. Clone my repo: **https://github.com/allenliu70/vpc_flow_logs.git**
 
-2. After cloning, cd into vpc_flow_logs and type the following python command:
+2. After cloning, cd into vpc_flow_logs. Depending on whether default or custom formatted flow logs you want to processed, follow one of the following 2 sessions.
+    
+3. Process **default format** flow logs:
 
-    **python process_default_format.py**
+    3.1 Command:
+        
+        **python process_default_format.py**
 
-    which will read flow logs from the **sample_flow_logs.log** file in the same folder by defaul.
+        which will read flow logs from the **sample_flow_logs.log** file in the same folder by defaul.
 
-3. To process / analyze other flow logs, just provide the file name as an argument to the program.
+    3.2 To process / analyze other flow logs, just provide the file name as an argument to the program.
 
-    **python process_default_format.py <my_flow_logs.log>**
+            **python process_default_format.py <my_flow_logs.log>**
+
+4. Process **custom format** flow logs:
+
+    4.1 Command:
+
+        **python process_custom_format.py <your_custom_format_filename> <your_flow_logs_filename> [--output_filename]**
+
+    4.1 Arguments:
+        -- The first 2 (positional) arguments are mandatory.
+                
+                <your_custom_format_filename>:
+                    - This file must contain 1 uncommented line to specify your custom format.
+                    - Commented and empty lines are ignore. The 1st uncommented and non-empty line will be treated as the specified custom format.
+                    - The fields specified in this line must be valid AWS flow log field which Amazon publshed on their website.
+                    - Otherwise, the program will print an error and exit.
+
+                <your_flow_logs_filename>:
+                    - This file should contain the flow logs you want to process and its contents should match the custom format you've provided.
+
+        -- The 3rd argument is optional, default: 'output_custom_fmt.txt'.
+                If you specify the output filename, the tag counts and port/portocol counts will be written there.
 
 ### Testing Conducted:
 
