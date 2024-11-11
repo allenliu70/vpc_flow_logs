@@ -10,7 +10,7 @@ def get_iana_protocol_numbers() -> List:
     try:
         print('Retrieving IANA protocol numbers.')
         # Open the CSV file containing the protocol numbers and names
-        with open('protocol-numbers.csv', mode='r') as file:
+        with open('../protocol-numbers.csv', mode='r') as file:
             csv_reader = csv.reader(file)
             
             # Skip the header row if there is one
@@ -37,7 +37,7 @@ def get_pre_selected_ports() -> List:
     try:
         print('Retrieving IANA protocol numbers.')
         # Open the CSV file containing the protocol numbers and names
-        with open('lookup_table.csv', mode='r') as file:
+        with open('../lookup_table.csv', mode='r') as file:
             csv_reader = csv.reader(file)
             
             # Skip the header row if there is one

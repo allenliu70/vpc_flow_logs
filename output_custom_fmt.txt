@@ -1,0 +1,10 @@
+Tag Counts:
+Tag,Count
+Untagged,8
+
+Port/Protocol Combination Counts:
+Port,Protocol,Count
+5001,tcp,4
+43416,tcp,1
+43418,tcp,2
+43638,tcp,1

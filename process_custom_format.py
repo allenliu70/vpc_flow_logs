@@ -1,9 +1,10 @@
 import sys
 import csv
 from pprint import pprint
+import argparse
 
 from available_fields import fields
-default_fields = [f[0] for f in fields if f[1] == 2]
+valid_fields = [f[0] for f in fields]
 
 def get_iana_protocol_mapping() -> dict:
     # Initialize an empty dictionary to store the mapping
@@ -60,21 +61,43 @@ def get_tag_mappings() -> dict:
     return tag_mappings
 
 from typing import List, Dict
-def get_counts(flow_log_filename: str) -> List[Dict]:
+def get_counts(custom_format_filename: str, flow_log_filename: str) -> List[Dict]:
     tag_counts = {}
     port_prot_counts = {}
 
     protocol_mapping = get_iana_protocol_mapping()
     tag_mappings = get_tag_mappings()
 
+    custom_format = None
+
     try:
+        print(f'Reading custom format for the user-provided file: {custom_format_filename}.')
+
+        with open(custom_format_filename) as custom_fmt_config:
+            for line in custom_fmt_config:
+                line = line.strip()
+                if line.startswith('#') or line.isspace() or len(line)==0: continue
+                else:
+                    custom_format = line.split()
+                    break
+
+        if not custom_format:
+            print(f"Unable to read custom format. Please ensure you provide a custom_format file and the custom format line uncommented .")
+            sys.exit(1)
+                
+        print(f'custom_format: {custom_format}')
+        for f in custom_format:
+            if f not in valid_fields:
+                print(f"'{f}' is not a valid field. Please fix your custom_format csv file.")
+                sys.exit(1)
+
         print('Reading flow logs and compute tag counts and port/prot combo counts.')
         with open(flow_log_filename) as logfile:
             for line in logfile:
                 line = line.strip(' \n')
                 if line:
                     dstport, protocol = None, None
-                    for fname, fval in zip(default_fields, line.split()):
+                    for fname, fval in zip(custom_format, line.split()):
                         if fname == 'dstport':
                             dstport = int(fval) if fval.isdigit() else fval
                         elif fname == 'protocol':
@@ -98,9 +121,9 @@ def get_counts(flow_log_filename: str) -> List[Dict]:
     return [tag_counts, port_prot_counts]
 
 
-def output_counts_to_file(tag_counts: Dict, port_prot_counts: Dict) -> None:
+def output_counts_to_file(tag_counts: Dict, port_prot_counts: Dict, output_filename: str) -> None:
     try:
-        with open('output.txt', mode='w') as outfile:
+        with open(output_filename, mode='w') as outfile:
             print('Writing Tag Counts to output.txt')
             outfile.write('Tag Counts:\n')
             outfile.write('Tag,Count\n')
@@ -124,9 +147,20 @@ def output_counts_to_file(tag_counts: Dict, port_prot_counts: Dict) -> None:
 
 def main():
 
-    # Get the file name from the command-line arguments if provided
-    flow_log_filename = sys.argv[1] if len(sys.argv) > 1 else 'test/sample_flow_logs.log'
-    tag_counts, port_prot_counts = get_counts(flow_log_filename)
+    # Create the parser
+    parser = argparse.ArgumentParser(description="Processor of flow logs in custom format.")
+    
+    # Add arguments
+    parser.add_argument('custom_format_csv_file', type=str, help='A CSV file to specify fields to be included in the custom format. One-liner will do. (Additional lines are ignore)')
+    parser.add_argument('flow_log_file', type=str, help='The CSV file containing flow logs in the specified custom format.')
+    parser.add_argument('--output_filename', type=str, default='output_custom_fmt.txt', help='Output file for tag counts and dstport/protocol combo counts.')
+    
+    # Parse the arguments to get the file names from the command-line arguments
+    args = parser.parse_args()
+
+    print(f"custom_format file: {args.custom_format_csv_file}\nflow logs: {args.flow_log_file}\nOutput filename: {args.output_filename}\n")
+
+    tag_counts, port_prot_counts = get_counts(args.custom_format_csv_file, args.flow_log_file)
     
     print('\nTag Counts:')
     pprint(tag_counts)
@@ -135,8 +169,8 @@ def main():
     pprint(port_prot_counts)
     print()
 
-    output_counts_to_file(tag_counts=tag_counts, port_prot_counts=port_prot_counts)
-    print('Done. Please open output.txt to check the results.')
+    output_counts_to_file(tag_counts=tag_counts, port_prot_counts=port_prot_counts, output_filename=args.output_filename)
+    print('Done. Please open output_custom_format.txt to check the results.')
 
 
 if __name__ == "__main__":
