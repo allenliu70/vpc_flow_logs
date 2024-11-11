@@ -38,8 +38,8 @@ as well.
     ```
 
     3.3 Outputs:
-        -- Tag counts and port/protocol combination counts are written to the same file.
-        -- **'output.txt'** is the output file (hardcoded), located at the program local folder (not the 'test' subfolder).
+    - Tag counts and port/protocol combination counts are written to the same file.
+    - **'output.txt'** is the output file (hardcoded), located at the program local folder (not the 'test' subfolder).
 
 
 4. Process **custom format** flow logs:
