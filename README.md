@@ -26,15 +26,16 @@ as well.
 3. Process **default format** flow logs:
 
     3.1 Command:
-        
-        **python process_default_format.py**
-
+```console
+        python process_default_format.py
+```
         which will read flow logs from the **test/sample_flow_logs.log** file in the same folder by defaul.
 
     3.2 To process / analyze other flow logs, just provide the file name as an argument to the program.
+```console
+        python process_default_format.py <my_flow_logs.log>
 
-            **python process_default_format.py <my_flow_logs.log>**
-
+```
     4.3 Outputs:
         -- Tag counts and port/protocol combination counts are written to the same file.
         -- **'output.txt'** is the output file (hardcoded), located at the program local folder (not the 'test' subfolder).
@@ -43,9 +44,9 @@ as well.
 4. Process **custom format** flow logs:
 
     4.1 Command:
-
-        **python process_custom_format.py <your_custom_format_filename> <your_flow_logs_filename> [--output_filename]**
-
+```console
+        python process_custom_format.py <your_custom_format_filename> <your_flow_logs_filename> [--output_filename]
+```
         (e.g. python process_custom_format.py test/sample_custom_format.config test/tcp_flag_sequence.log)
 
     4.2 Arguments:
@@ -78,8 +79,10 @@ as well.
 3. I wrote a **synthetic flow log generator** that randomize attributes in the flow logs and generate 10000 records.
    This is currently implemented for v2 / default format. To run it, type the following command:
 
-    **cd test**
-    **python generate_flow_logs.py**
+```console
+    cd test
+    python generate_flow_logs.py
+```
 
    The generated synthetic flow logs are written into **'v2_synthetic_flow_logs.log'** in the test subfolder.
    ps. A word on dstport randomization: 
