@@ -22,7 +22,9 @@ as well.
 1. Clone my repo: **https://github.com/allenliu70/vpc_flow_logs.git**
 
 2. After cloning, cd into the folder **vpc_flow_logs**.
-   Depending on whether default or custom formatted flow logs you want to processed, follow one of the following 2 sessions.
+   Depending on whether default or custom formatted flow logs you want to processed, follow one of the following 2 sections.
+   - Section 3: process flow logs in default format
+   - Section 4: process flow lgos in custom formats
     
 3. Process **default format** flow logs:
 
