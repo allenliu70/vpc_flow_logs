@@ -34,12 +34,12 @@ as well.
     3.2 To process / analyze other flow logs, just provide the file name as an argument to the program.
 
 ```console
-        python process_default_format.py <my_flow_logs.log>
+    python process_default_format.py <my_flow_logs.log>
 
 ```
-    3.3 Outputs:
-        -- Tag counts and port/protocol combination counts are written to the same file.
-        -- **'output.txt'** is the output file (hardcoded), located at the program local folder (not the 'test' subfolder).
+3.3 Outputs:
+    -- Tag counts and port/protocol combination counts are written to the same file.
+    -- **'output.txt'** is the output file (hardcoded), located at the program local folder (not the 'test' subfolder).
 
 
 4. Process **custom format** flow logs:
