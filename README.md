@@ -1,6 +1,9 @@
 # vpc_flow_logs
 This program will process VPC flow logs and output stats into a file.
 
+### Intro.
+I approch this problem by focusing on the simpler and easier scope first, i.e. version 2 only and the default format. Once the solution for that simpler scope is established and validated, I then use it as the base to build the more advanced sotlution for the broader problem, i.e. the support for the higher versions and custom formats. In general, I appreciate and follow the KISS principle (Keep it simple, stupid) for software design/developmen as well as security.
+
 ### Updates (Nov. 10, 2024):
 1. Support for higher versions (>2) and custom format are now implemented.
 
@@ -96,3 +99,4 @@ as well.
 
 3. Please note: if the fields custom format do not match the flow logs data, the program could error out.
 
+4. Since I re-used main compoments from the implementation for the default format for the more advanced solution for the custom format, there is an opportunity to refactor the code and move the common components into, say, a utils file or folder. I can do that as a further enhancement.
