@@ -27,7 +27,7 @@ as well.
 
     3.1 Command:
     ```console
-        python process_default_format.py
+    python process_default_format.py
     ```
     which will read flow logs from the **test/sample_flow_logs.log** file in the same folder by default.
 
@@ -37,7 +37,7 @@ as well.
         python process_default_format.py <my_flow_logs.log>
 
 ```
-    4.3 Outputs:
+    3.3 Outputs:
         -- Tag counts and port/protocol combination counts are written to the same file.
         -- **'output.txt'** is the output file (hardcoded), located at the program local folder (not the 'test' subfolder).
 
