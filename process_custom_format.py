@@ -71,12 +71,12 @@ def get_counts(custom_format_filename: str, flow_log_filename: str) -> List[Dict
     custom_format = None
 
     try:
-        print('Reading custom format for the user-provided file: {custom_format_filename}.')
+        print(f'Reading custom format for the user-provided file: {custom_format_filename}.')
 
         with open(custom_format_filename) as custom_fmt_config:
             for line in custom_fmt_config:
                 line = line.strip()
-                if line.startswith('#') or line.isspace(): continue
+                if line.startswith('#') or line.isspace() or len(line)==0: continue
                 else:
                     custom_format = line.split()
                     break
@@ -158,7 +158,7 @@ def main():
     # Parse the arguments to get the file names from the command-line arguments
     args = parser.parse_args()
 
-    print(f"custom_format file: {args.custom_format_csv_file}!\nflow logs: {args.flow_log_file}\nOutput filename: {args.output_filename}")
+    print(f"custom_format file: {args.custom_format_csv_file}\nflow logs: {args.flow_log_file}\nOutput filename: {args.output_filename}\n")
 
     tag_counts, port_prot_counts = get_counts(args.custom_format_csv_file, args.flow_log_file)
     
@@ -170,7 +170,7 @@ def main():
     print()
 
     output_counts_to_file(tag_counts=tag_counts, port_prot_counts=port_prot_counts, output_filename=args.output_filename)
-    print('Done. Please open output.txt to check the results.')
+    print('Done. Please open output_custom_format.txt to check the results.')
 
 
 if __name__ == "__main__":

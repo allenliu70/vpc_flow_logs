@@ -125,7 +125,7 @@ def output_counts_to_file(tag_counts: Dict, port_prot_counts: Dict) -> None:
 def main():
 
     # Get the file name from the command-line arguments if provided
-    flow_log_filename = sys.argv[1] if len(sys.argv) > 1 else 'sample_flow_logs.log'
+    flow_log_filename = sys.argv[1] if len(sys.argv) > 1 else 'test/sample_flow_logs.log'
     tag_counts, port_prot_counts = get_counts(flow_log_filename)
     
     print('\nTag Counts:')

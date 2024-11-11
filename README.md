@@ -26,11 +26,16 @@ as well.
         
         **python process_default_format.py**
 
-        which will read flow logs from the **sample_flow_logs.log** file in the same folder by defaul.
+        which will read flow logs from the **test/sample_flow_logs.log** file in the same folder by defaul.
 
     3.2 To process / analyze other flow logs, just provide the file name as an argument to the program.
 
             **python process_default_format.py <my_flow_logs.log>**
+
+    4.3 Outputs:
+        -- Tag counts and port/protocol combination counts are written to the same file.
+        -- **'output.txt'** is the output file (hardcoded), located at the program local folder (not the 'test' subfolder).
+
 
 4. Process **custom format** flow logs:
 
@@ -38,7 +43,9 @@ as well.
 
         **python process_custom_format.py <your_custom_format_filename> <your_flow_logs_filename> [--output_filename]**
 
-    4.1 Arguments:
+        (e.g. python process_custom_format.py test/sample_custom_format.config test/tcp_flag_sequence.log)
+
+    4.2 Arguments:
         -- The first 2 (positional) arguments are mandatory.
                 
                 <your_custom_format_filename>:
@@ -49,9 +56,15 @@ as well.
 
                 <your_flow_logs_filename>:
                     - This file should contain the flow logs you want to process and its contents should match the custom format you've provided.
+                    - By default, results are written to 'output_custom_format.txt' at program local folder. (Not the 'test' subfoler)
 
         -- The 3rd argument is optional, default: 'output_custom_fmt.txt'.
                 If you specify the output filename, the tag counts and port/portocol counts will be written there.
+
+    4.3 Outputs:
+        -- Tag counts and port/protocol combination counts are written to the same file.
+        -- By default, **'output_custom_fmt.txt'** is the output file.
+        -- If user has provided an output filename to the program, the user-specified output file path will be created and updated with the results.
 
 ### Testing Conducted:
 
@@ -59,12 +72,13 @@ as well.
 
 2. I gathered additional version2 / default format flow log samples from AWS site https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-records-examples.html (saved locally as 'more_v2_sample_logs.log') and used it for testing purpose.
 
-3. I wrote a synthetic flow log generator that randomize attributes in the flow logs and generate 10000 records.
+3. I wrote a **synthetic flow log generator** that randomize attributes in the flow logs and generate 10000 records.
    This is currently implemented for v2 / default format. To run it, type the following command:
 
+    **cd test**
     **python generate_flow_logs.py**
 
-   The generated synthetic flow logs are written into **'v2_synthetic_flow_logs.log'** in the local folder.
+   The generated synthetic flow logs are written into **'v2_synthetic_flow_logs.log'** in the test subfolder.
    ps. A word on dstport randomization: 
          - since the range (1, 65535) for ports results in mostly untagged entries, I made an assumption here that we may be more interseted in small set of pre-selecte ports.
          - By defaul, I read pre_selected_ports from lookup_table.csv, which is the example tag mappings provide for this technical assessment. It currently contains these port numbers: [25, 68, 23, 31, 443, 22, 3389, 0, 110, 993, 143].
@@ -80,4 +94,5 @@ as well.
 
 2. Once further testings are conducted and the program's robustness is confirmed, I can go ahead and enhance this program to support higher version and custom formats.
 
+3. Please note: if the fields custom format do not match the flow logs data, the program could error out.
 
